@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>MusiKN</title>
+        <link rel="stylesheet" href="style.css">
+        <script defer src="https://cdn.jsdelivr.net/npm/jsmediatags@3.9.7/dist/jsmediatags.min.js"></script>
+        <script src="script.js" defer></script>
+    </head>
+
+
+    <body>
+        <canvas id="audio-visualizer" aria-hidden="true"></canvas>
+        <aside class="playlist-shell" id="playlist-shell">
+            <div class="playlist">
+                <header class="playlist-header">
+                    <div>
+                        <h1>Playlist</h1>
+                        <span id="song-count">0 tracks</span>
+                    </div>
+                    <button id="add-songs" type="button">+ Add songs</button>
+                </header>
+                <input id="audio-files" type="file" accept="audio/*,.mp3,.m4a,.aac,.wav,.ogg,.flac,.opus,.aiff" multiple hidden>
+                <ul id="song-list">
+                    <li class="playlist-empty">Your playlist is empty.</li>
+                </ul>
+            </div>
+            <button id="ppanel_hide" class="playlist-toggle" type="button" aria-label="Hide playlist" aria-expanded="true">←</button>
+        </aside>
+        <footer class="spannel_shell">
+            <div class="spannel">
+                <div class="song-info">
+                    <div class="album-art" aria-hidden="true">
+                        <span id="player-art-placeholder"></span>
+                        <img id="player-art-image" alt="" hidden>
+                    </div>
+                    <div class="song-copy">
+                        <h2 id="player-title">Choose a song</h2>
+                        <p id="player-artist">Add audio to your playlist</p>
+                    </div>
+                </div>
+                <div class="controls">
+                    <button id="prev" type="button" aria-label="Previous track" disabled>
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true" focusable="false"><path d="M6 6h2v12H6zm3 6 9 6V6z"/></svg>
+                    </button>
+                    <button id="play-pause" type="button" aria-label="Play" disabled>
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8 5v14l11-7z"/></svg>
+                    </button>
+                    <button id="next" type="button" aria-label="Next track" disabled>
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true" focusable="false"><path d="M16 6h2v12h-2zM6 18l9-6-9-6z"/></svg>
+                    </button>
+                </div>
+                <div class="track-timeline">
+                    <label class="volume-control">
+                        <span>Volume</span>
+                        <input type="range" id="volume-bar" value="1" min="0" max="1" step="0.01" aria-label="Volume">
+                    </label>
+                    <div class="time-display">
+                        <span id="current-time">0:00</span>
+                        <span id="duration">0:00</span>
+                    </div>
+                </div>
+            </div>
+            <div id="progress_bar" role="slider" tabindex="0" aria-label="Playback position" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-valuetext="0:00 of 0:00" aria-disabled="true">
+                <canvas id="progress-visualizer" aria-hidden="true"></canvas>
+                <span class="progress-thumb" aria-hidden="true"></span>
+            </div>
+            <div class="drop-hint" aria-hidden="true">Drop audio to add tracks</div>
+        </footer>
+        <p id="player-status" class="visually-hidden" role="status" aria-live="polite"></p>
+    </body>
+</html>
