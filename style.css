@@ -1,14 +1,15 @@
 :root {
-    --color-background: #1e1e1e;
+    --color-background: #111111;
     --color-panel-background: var(--color-background);
-    --color-surface-raised: #3c3c3c;
-    --color-surface-hover: #262626;
+    --color-surface-raised: #131313;
+    --color-surface-hover: #040404;
     --color-track: #474747;
     --color-text-primary: #f5f1e8;
     --color-text-secondary: #d4d4d4;
     --color-text-muted: #a7aaa7;
     --color-accent: #ff5e00;
     --visualizer-color: #ff5e00;
+    --visualizer-bloom: 10px;
     --cover-placeholder-gradient: linear-gradient(to right, #232526, #414345);
     --cover-placeholder-icon-color: #ff5e00;
     --cover-placeholder-icon-size: 24px;
@@ -61,7 +62,27 @@
 html {
     background-color: var(--color-background);
     font-family: var(--font-family-ui);
+    filter: drop-shadow(0 0 1px var(--visualizer-color)) drop-shadow(0 0 var(--visualizer-bloom) var(--visualizer-color));  
 }
+
+
+.mask {
+  z-index: 999;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(255, 0, 0, 0.01) 0px,
+    rgba(255, 0, 0, 0.01) 1px,
+    rgba(0, 255, 0, 0.01) 1px,
+    rgba(0, 255, 0, 0.01) 2px,
+    rgba(0, 0, 255, 0.01) 2px,
+    rgba(0, 0, 255, 0.01) 3px
+  );
+}
+
 
 #audio-visualizer {
     position: fixed;
@@ -70,6 +91,8 @@ html {
     width: 100%;
     height: 100%;
     pointer-events: none;
+    filter: drop-shadow(0 0 20px var(--visualizer-color)) drop-shadow(0 0 var(--visualizer-bloom) var(--visualizer-color));
+  
 }
 
 button,
@@ -420,6 +443,7 @@ body {
     width: 100%;
     height: 100%;
     pointer-events: none;
+    filter: drop-shadow(0 0 1px var(--visualizer-color)) drop-shadow(0 0 calc(var(--visualizer-bloom) / 2) var(--visualizer-color));
 }
 
 #progress_bar::before,
